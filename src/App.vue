@@ -1,24 +1,29 @@
+<script lang="ts">
+import HomePage from "./pages/HomePage.vue";
+import Recipes from "./pages/Recipes.vue";
+import MealPlans from "./pages/MealPlans.vue";
+import ShoppingList from "./pages/ShoppingList.vue";
+import AddRecipe from "./pages/AddRecipe.vue";
+import SingleRecipe from "./pages/SingleRecipe.vue";
+
+export const routes = [
+  { path: "/", component: HomePage },
+  { path: "/Recipes", component: Recipes },
+  { path: "/MealPlans", component: MealPlans },
+  { path: "/ShoppingList", component: ShoppingList },
+  { path: "/AddRecipe", component: AddRecipe },
+  { path: "/SingleRecipe/:id", component: SingleRecipe },
+];
+</script>
+
 <script setup lang="ts">
-// Welcome to Recipe Vault!
-// Your challenge starts here. Good luck! 🚀
+import { RouterView } from "vue-router";
+import NavBar from "./components/NavBar.vue";
+import Footer from "./components/footer.vue";
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 py-8">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">
-        Recipe Vault 🍳
-      </h1>
-      <p class="text-gray-600 mb-8">
-        Welcome to your advanced Vue challenge. Read the README.md to get started!
-      </p>
-      
-      <!-- TODO: Build your app here -->
-      <div class="bg-white rounded-lg shadow-md p-6">
-        <p class="text-gray-500 text-center">
-          Your recipe collection will appear here...
-        </p>
-      </div>
-    </div>
-  </div>
+  <NavBar />
+  <RouterView />
+  <Footer />
 </template>
