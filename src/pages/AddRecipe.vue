@@ -1,51 +1,3 @@
-<script setup lang="ts">
-import { ref, reactive } from "vue";
-import { useRouter } from "vue-router";
-import { useRecipes } from "../composables/useRecipes";
-
-const router = useRouter();
-const { addRecipe } = useRecipes();
-
-// 1. Setup the reactive form state
-const form = reactive({
-  title: "",
-  description: "",
-  category: "Dinner",
-  difficulty: "Easy",
-  image: "",
-  prepTime: 0,
-  cookTime: 0,
-  servings: 1,
-  ingredients: [""] as string[],
-  instructions: [""] as string[],
-});
-
-// 2. Methods for dynamic lists (Ingredients/Instructions)
-const addIngredient = () => form.ingredients.push("");
-const removeIngredient = (index: number) => form.ingredients.splice(index, 1);
-
-const addInstruction = () => form.instructions.push("");
-const removeInstruction = (index: number) => form.instructions.splice(index, 1);
-
-// 3. Handle Submit
-const handleSubmit = () => {
-  // Simple validation to ensure we aren't saving empty items
-  const cleanIngredients = form.ingredients.filter((i) => i.trim() !== "");
-  const cleanInstructions = form.instructions.filter((i) => i.trim() !== "");
-
-  addRecipe({
-    ...form,
-    ingredients: cleanIngredients,
-    instructions: cleanInstructions,
-  });
-
-  // Take user to the recipe list after saving
-  router.push("/Recipes");
-};
-
-const handleCancel = () => router.push("/Recipes");
-</script>
-
 <template>
   <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 pt-20">
     <div class="max-w-5xl mx-auto">
@@ -277,3 +229,51 @@ const handleCancel = () => router.push("/Recipes");
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { useRecipes } from "..//composables/UseRecipes";
+
+const router = useRouter();
+const { addRecipe } = useRecipes();
+
+//Setup the reactive form state(using reeactive because it groups related data into a single object that you can update directly without the clutter of typing .value for every single field)
+const form = reactive({
+  title: "",
+  description: "",
+  category: "Dinner" as const,
+  difficulty: "Easy" as const,
+  image: "",
+  prepTime: 0,
+  cookTime: 0,
+  servings: 1,
+  ingredients: [""] as string[],
+  instructions: [""] as string[],
+});
+
+//Methods for dynamic lists (Ingredients/Instructions)
+const addIngredient = () => form.ingredients.push("");
+const removeIngredient = (index: number) => form.ingredients.splice(index, 1);
+
+const addInstruction = () => form.instructions.push("");
+const removeInstruction = (index: number) => form.instructions.splice(index, 1);
+
+// Handle Submit
+const handleSubmit = () => {
+  // Simple validation to ensure we aren't saving empty items
+  const cleanIngredients = form.ingredients.filter((i) => i.trim() !== "");
+  const cleanInstructions = form.instructions.filter((i) => i.trim() !== "");
+
+  addRecipe({
+    ...form,
+    ingredients: cleanIngredients,
+    instructions: cleanInstructions,
+  });
+
+  // Take user to the recipe list after saving
+  router.push("/Recipes");
+};
+
+const handleCancel = () => router.push("/Recipes");
+</script>

@@ -5,6 +5,7 @@ import MealPlans from "./pages/MealPlans.vue";
 import ShoppingList from "./pages/ShoppingList.vue";
 import AddRecipe from "./pages/AddRecipe.vue";
 import SingleRecipe from "./pages/SingleRecipe.vue";
+import EditRecipe from "./pages/EditRecipe.vue";
 
 export const routes = [
   { path: "/", component: HomePage },
@@ -13,6 +14,7 @@ export const routes = [
   { path: "/ShoppingList", component: ShoppingList },
   { path: "/AddRecipe", component: AddRecipe },
   { path: "/SingleRecipe/:id", component: SingleRecipe },
+  { path: "/EditRecipe/:id", component: EditRecipe },
 ];
 </script>
 

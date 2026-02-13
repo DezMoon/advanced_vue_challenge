@@ -5,7 +5,7 @@ export interface Recipe {
   id: string;
   title: string;
   description: string;
-  image: string; // i will use links
+  image: string; // using links
   category: "Breakfast" | "Lunch" | "Dinner" | "Dessert" | "Snack";
   prepTime: number; // Time in minutes
   cookTime: number; // Time in minutes

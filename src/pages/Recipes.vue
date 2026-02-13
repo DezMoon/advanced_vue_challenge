@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import { useRecipes } from "../composables/useRecipes";
-import { useFilter } from "../composables/useFilter";
-
-const { recipes } = useRecipes();
-
-// Pass the recipes list into our filter logic
-const { searchQuery, selectedCategory, filteredRecipes } = useFilter(recipes);
-
-const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Snack"];
-</script>
-
 <template>
   <div class="max-w-7xl mx-auto px-4 py-12">
     <header class="mb-12 text-center md:text-left pt-20">
@@ -20,6 +8,13 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Snack"];
         Explore our collection of kitchen-tested favorites.
       </p>
     </header>
+    <RouterLink to="/AddRecipe">
+      <button
+        class="mb-5 Stext-green-700 px-8 py-3 rounded-md font-bold hover:bg-green-50 shadow-lg"
+      >
+        Add Recipe
+      </button>
+    </RouterLink>
 
     <section
       class="mb-10 flex flex-col md:flex-row gap-4 justify-between items-center bg-green-50 p-6 rounded-2xl border border-green-100"
@@ -113,3 +108,15 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Snack"];
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useRecipes } from "../composables/UseRecipes";
+import { useFilter } from "../composables/useFilter";
+
+const { recipes } = useRecipes();
+
+// Pass the recipes list into our filter logic
+const { searchQuery, selectedCategory, filteredRecipes } = useFilter(recipes);
+
+const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Snack"];
+</script>

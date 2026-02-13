@@ -1,6 +1,6 @@
 import { ref, watch } from "vue";
 import type { Recipe } from "../types/Types";
-import { sampleRecipes } from "../data/sampleRecipes"; // Import your file
+import { sampleRecipes } from "../data/sampleRecipes";
 
 const STORAGE_KEY = "recipes";
 

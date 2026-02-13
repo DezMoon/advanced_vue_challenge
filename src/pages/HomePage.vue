@@ -1,17 +1,5 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { useRecipes } from "../composables/UseRecipes";
+>
 
-// 1. Get the reactive recipes list from your composable
-const { recipes } = useRecipes();
-
-// 2. We use a computed property to get the last 3 recipes
-// .slice(-3) gets the latest items, .reverse() puts the newest first
-const recentRecipes = computed(() => {
-  return recipes.value.slice(-3).reverse();
-});
-</script>
-~~~``````~````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <template>
   <div class="min-h-screen bg-gray-50 font-sans">
@@ -102,3 +90,17 @@ const recentRecipes = computed(() => {
     </section>
   </div>
 </template>
+
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { useRecipes } from "../composables/UseRecipes";
+
+//Get the reactive recipes list from your composable
+const { recipes } = useRecipes();
+
+//using the computed property to get the 3 recent recipes
+const recentRecipes = computed(() => {
+  return recipes.value.slice(0,3);
+});
+</script

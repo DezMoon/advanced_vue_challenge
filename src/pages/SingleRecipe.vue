@@ -125,9 +125,7 @@
                 >
                   {{ index + 1 }}
                 </div>
-                <p class="text-gray-700 leading-relaxed pt-2">
-                  {{ step }}
-                </p>
+                <p class="text-gray-700 leading-relaxed pt-2">{{ step }}</p>
               </div>
             </div>
           </div>
@@ -143,7 +141,7 @@
             ✏️ Edit Recipe
           </button>
           <button
-            @click="handleDelete"
+            @click="openDeleteModal"
             class="px-8 py-3 bg-red-50 text-red-600 rounded-2xl font-bold hover:bg-red-100 transition-all flex items-center justify-center gap-2"
           >
             🗑️ Delete Recipe
@@ -171,38 +169,114 @@
       </button>
     </div>
   </div>
+
+  <Teleport to="body">
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div
+        v-if="isDeleteModalOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+          @click="closeDeleteModal"
+        ></div>
+
+        <div
+          class="relative bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl"
+        >
+          <div class="text-center">
+            <div
+              class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <span class="text-4xl text-red-600">🗑️</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900 mb-3">
+              Delete Recipe?
+            </h3>
+            <p class="text-slate-500 mb-8 leading-relaxed">
+              Are you sure? This will remove
+              <strong>{{ recipe?.title }}</strong>
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <button
+              @click="confirmDelete"
+              class="w-full py-4 bg-red-600 text-white rounded-2xl font-bold hover:bg-red-700 transition-all shadow-lg shadow-red-100"
+            >
+              Yes, Delete it
+            </button>
+            <button
+              @click="closeDeleteModal"
+              class="w-full py-4 bg-slate-100 text-slate-600 rounded-2xl font-bold hover:bg-slate-200 transition-all"
+            >
+              No, Keep it
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref, computed } from "vue";
+import {
+  useRoute,
+  useRouter,
+  type RouteLocationNormalizedLoaded,
+  type Router,
+} from "vue-router";
 import { useRecipes } from "../composables/UseRecipes";
+import type { Recipe } from "../types/Types";
 
-const route = useRoute();
-const router = useRouter();
+//Ensuring router and route are correctly recognized
+const route: RouteLocationNormalizedLoaded = useRoute();
+const router: Router = useRouter();
 const { recipes, deleteRecipe } = useRecipes();
 
-// 1. Get the ID from the URL and find the matching recipe
+// Controls whether the custom delete confirmation is visible
+const isDeleteModalOpen = ref<boolean>(false);
+
+//Find the recipe matching the ID in the URL
 const recipeId = route.params.id as string;
-const recipe = computed(() => {
-  return recipes.value.find((r) => r.id === recipeId);
+const recipe = computed((): Recipe | undefined => {
+  return recipes.value.find((r: Recipe) => r.id === recipeId);
 });
 
-// 2. Navigation & Actions
-const goBack = () => router.push("/Recipes");
-
-const handleEdit = () => {
+/**
+ * Navigation Logic
+ */
+const goBack = (): void => {
+  router.push("/Recipes");
+};
+const handleEdit = (): void => {
   router.push(`/EditRecipe/${recipeId}`);
 };
 
-const handleDelete = () => {
-  if (
-    confirm(
-      "Are you sure you want to delete this recipe? This cannot be undone.",
-    )
-  ) {
-    deleteRecipe(recipeId);
-    router.push("/Recipes");
-  }
+/**
+ * modal for the "DELETE" confirmation
+ */
+const openDeleteModal = (): void => {
+  isDeleteModalOpen.value = true;
+};
+const closeDeleteModal = (): void => {
+  isDeleteModalOpen.value = false;
+};
+
+/**
+ * Deleting data .
+ * @returns void
+ */
+const confirmDelete = (): void => {
+  deleteRecipe(recipeId);
+  router.push("/Recipes");
 };
 </script>
