@@ -101,6 +101,6 @@ const { recipes } = useRecipes();
 
 //using the computed property to get the 3 recent recipes
 const recentRecipes = computed(() => {
-  return recipes.value.slice(0,3);
+  return recipes.value.slice(-6).reverse();
 });
 </script

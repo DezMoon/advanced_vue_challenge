@@ -14,3 +14,17 @@ export interface Recipe {
   ingredients: string[];
   instructions: string[];
 }
+
+export interface ShoppingItem {
+  id: string;
+  name: string;
+  checked: boolean;
+}
+
+export interface DailyPlan {
+  Breakfast: Recipe | null;
+  Lunch: Recipe | null;
+  Snack: Recipe | null;
+  Dinner: Recipe | null;
+  Dessert: Recipe | null;
+}

@@ -1,17 +1,6 @@
 import { ref, watch, onMounted } from "vue";
 import type { Recipe } from "../types/Types";
-
-/**
- * Defines the structure for a single day's meal slots.
- */
-
-export interface DailyPlan {
-  Breakfast: Recipe | null;
-  Lunch: Recipe | null;
-  Snack: Recipe | null;
-  Dinner: Recipe | null;
-  Dessert: Recipe | null;
-}
+import type { DailyPlan } from "../types/Types";
 
 // A list of daily plans indexed by day names
 export type WeeklyPlan = Record<string, DailyPlan>;

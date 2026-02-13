@@ -43,7 +43,7 @@
           <div class="p-4 grid grid-cols-2 sm:grid-cols-5 gap-3">
             <template v-for="type in mealTypes" :key="type">
               <div
-                v-if="mealPlan[day][type]"
+                v-if="mealPlan[day] && mealPlan[day][type]"
                 class="relative flex flex-col items-center justify-center p-3 rounded-2xl bg-green-50 border-2 border-green-200 min-h-[100px] group animate-in fade-in zoom-in duration-300"
               >
                 <button
@@ -112,7 +112,6 @@
             class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
             @click="isSelectorOpen = false"
           ></div>
-
           <div
             class="relative bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[70vh] flex flex-col overflow-hidden"
           >
@@ -171,10 +170,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useMealPlan, type DailyPlan } from "../composables/useMealPlans";
+import { useMealPlan } from "../composables/useMealPlans";
 import { useRecipes } from "../composables/UseRecipes";
 import { useShoppingList } from "../composables/useShoppingList";
-import type { Recipe } from "../types/Types";
+import type { Recipe, DailyPlan } from "../types/Types";
 
 const router = useRouter();
 const { mealPlan, days, addRecipeToPlan, removeRecipeFromPlan, clearWeek } =
@@ -185,12 +184,12 @@ const { generateFromMealPlan } = useShoppingList();
 // Controls the recipe picker modal
 const isSelectorOpen = ref(false);
 
-// Tracks which day and slot we are currently picking for
+// Tracks which day and slot we are currently picking forwritten as 'keyof DailyPlan' to match the composable's requirements
 const activeSelection = ref<{ day: string; slot: keyof DailyPlan } | null>(
   null,
 );
 
-// Static list of meal types to render the columns/slots
+// Static list of meal types to render the slots manually typed so that type script can know that are valid DailyPlan slots
 const mealTypes: (keyof DailyPlan)[] = [
   "Breakfast",
   "Lunch",
@@ -230,7 +229,8 @@ const confirmSelection = (recipe: Recipe) => {
  * @param day - The day to wipe
  */
 const clearDay = (day: string) => {
-  // We loop through each meal type and call the existing removal logic
+  // We loop through each meal type and call the existing removal logic to ensure the whole day is rest to empty
+
   mealTypes.forEach((type) => removeRecipeFromPlan(day, type));
 };
 
@@ -238,9 +238,8 @@ const clearDay = (day: string) => {
  * Extracts all ingredients and redirects to the shopping list page.
  */
 const handleGenerateList = () => {
-  // We pass the current state to the shopping list generator
+  // We pass the current state (.value) to the shopping list generator
   generateFromMealPlan(mealPlan.value);
-  // Navigating to the Shopping List view to see the results
   router.push("/ShoppingList");
 };
 </script>

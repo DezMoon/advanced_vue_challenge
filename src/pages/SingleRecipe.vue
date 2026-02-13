@@ -101,7 +101,7 @@
                 :key="index"
                 class="flex items-start gap-3 p-3 rounded-xl hover:bg-green-50 transition-colors"
               >
-                <span class="text-green-600 font-bold">✔</span>
+                <span class="text-green-600 font-bold">🌿</span>
                 <span class="text-gray-700 font-medium">{{ ingredient }}</span>
               </li>
             </ul>
@@ -138,35 +138,16 @@
             @click="handleEdit"
             class="px-8 py-3 bg-gray-100 text-gray-700 rounded-2xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
           >
-            ✏️ Edit Recipe
+            Edit Recipe
           </button>
           <button
             @click="openDeleteModal"
-            class="px-8 py-3 bg-red-50 text-red-600 rounded-2xl font-bold hover:bg-red-100 transition-all flex items-center justify-center gap-2"
+            class="px-8 py-3 bg-red-50 text-red-600 rounded-2xl font-bold hover:bg-red-200 transition-all flex items-center justify-center gap-2"
           >
-            🗑️ Delete Recipe
+            Delete Recipe
           </button>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div
-    v-else
-    class="min-h-screen flex items-center justify-center p-6 text-center"
-  >
-    <div class="bg-white p-12 rounded-3xl shadow-xl max-w-md">
-      <div class="text-6xl mb-4">🍲</div>
-      <h2 class="text-2xl font-black text-gray-900 mb-2">Recipe Not Found</h2>
-      <p class="text-gray-500 mb-8">
-        It seems this recipe has vanished from the vault.
-      </p>
-      <button
-        @click="goBack"
-        class="w-full bg-green-700 text-white py-3 rounded-xl font-bold"
-      >
-        Return to Vault
-      </button>
     </div>
   </div>
 

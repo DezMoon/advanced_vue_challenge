@@ -3,8 +3,13 @@
     class="fixed bg-white shadow-md px-6 py-4 flex items-center justify-between flex-wrap w-full z-10"
   >
     <div class="flex items-center gap-2">
-      <img src="/src/assets/logo1.png" alt="Logo" class="h-8 w-8" />
-      <span class="text-xl font-bold text-green-700">Recipe Vault</span>
+      <RouterLink to="/" class="hover:text-green-700">
+        <img src="/src/assets/logo1.png" alt="Logo" class="h-8 w-8" />
+      </RouterLink>
+
+      <RouterLink to="/" class="hover:text-green-700">
+        <span class="text-xl font-bold text-green-700">Recipe Vault</span>
+      </RouterLink>
     </div>
 
     <button

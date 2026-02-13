@@ -10,9 +10,18 @@ const STORAGE_KEY = "recipes";
  *Falls back to sampleRecipes if no saved recipes are found (first time user or cleared storage)
  */
 const savedRecipes = localStorage.getItem(STORAGE_KEY);
-const initialData: Recipe[] = savedRecipes
+const parsedSaved: Recipe[] = savedRecipes ? JSON.parse(savedRecipes) : [];
+
+// We merge them: Starting with saved data, then add any samples that arent already in the saved list we are checking this by ID
+const initialData: Recipe[] = [
+  ...parsedSaved,
+  ...sampleRecipes.filter(
+    (sample) => !parsedSaved.some((saved) => saved.id === sample.id),
+  ),
+];
+/* const initialData: Recipe[] = savedRecipes
   ? JSON.parse(savedRecipes)
-  : sampleRecipes;
+  : sampleRecipes; */
 
 /*
  *a global state for recipes that can be shared across components.
