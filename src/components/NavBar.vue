@@ -38,7 +38,6 @@
       <RouterLink
         to="/"
         class="hover:text-green-700 dark:hover:text-green-400"
-        active-class="text-green-700 dark:text-green-400 font-bold underline decoration-2 underline-offset-4"
         >Home</RouterLink
       >
       <span class="hidden md:inline text-gray-300 dark:text-gray-600">|</span>
@@ -46,7 +45,6 @@
       <RouterLink
         to="/Recipes"
         class="hover:text-green-700 dark:hover:text-green-400"
-        active-class="text-green-700 dark:text-green-400 font-bold underline decoration-2 underline-offset-4"
         >Recipes</RouterLink
       >
       <span class="hidden md:inline text-gray-300 dark:text-gray-600">|</span>
@@ -87,3 +85,21 @@ const isMenuOpen = ref(false);
 // Access the reactive state and the toggle function from the composable
 const { isDark, toggleTheme } = useThemeContext();
 </script>
+
+<style scoped>
+/* Apply Tailwind-like active styles to all RouterLink active states */
+::v-deep(.router-link-active),
+::v-deep(.router-link-exact-active) {
+  color: #047857; /* tailwind green-700 */
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: currentColor;
+}
+
+.dark ::v-deep(.router-link-active),
+.dark ::v-deep(.router-link-exact-active) {
+  color: #047857; /* tailwind green-700 */
+}
+</style>
