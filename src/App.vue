@@ -21,11 +21,11 @@ export const routes = [
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import NavBar from "./components/NavBar.vue";
-import Footer from "./components/footer.vue";
+import TheFooter from "./components/TheFooter.vue";
 </script>
 
 <template>
   <NavBar />
   <RouterView />
-  <Footer />
+  <TheFooter />
 </template>
