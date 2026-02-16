@@ -1,7 +1,10 @@
 <template>
-  <div v-if="recipe" class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 pt-24">
+  <div
+    v-if="recipe"
+    class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 pt-24 dark:bg-gray-900"
+  >
     <div
-      class="max-w-4xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden border border-gray-100"
+      class="dark:bg-gray-700 dark:border-gray-700 max-w-4xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden border border-gray-100"
     >
       <div class="relative h-100">
         <img
@@ -27,17 +30,17 @@
           <div>
             <div class="flex items-center gap-3 mb-2">
               <span
-                class="bg-green-100 text-green-800 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest"
+                class="dark:bg-green-400 bg-green-100 text-green-800 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest"
               >
                 {{ recipe.category }}
               </span>
               <span class="text-gray-300">|</span>
-              <span class="text-gray-500 font-bold text-sm">{{
+              <span class="text-gray-500 font-bold text-sm dark:text-white">{{
                 recipe.difficulty
               }}</span>
             </div>
             <h1
-              class="text-4xl md:text-5xl font-black text-gray-900 leading-tight"
+              class="text-4xl md:text-5xl font-black text-gray-900 leading-tight dark:text-white"
             >
               {{ recipe.title }}
             </h1>
@@ -45,43 +48,51 @@
         </div>
 
         <p
-          class="text-xl text-gray-600 mb-10 leading-relaxed italic border-l-4 border-green-500 pl-6"
+          class="dark:text-white text-xl text-gray-600 mb-10 leading-relaxed italic border-l-4 border-green-500 pl-6"
         >
           "{{ recipe.description }}"
         </p>
 
         <div
-          class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-gray-100 mb-12"
+          class="dark:border-gray-800 border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y mb-12"
         >
           <div class="text-center md:border-r border-gray-100">
-            <p class="text-gray-400 text-xs uppercase font-black mb-1">
+            <p
+              class="text-gray-400 text-xs uppercase font-black mb-1 dark:text-white"
+            >
               Prep Time
             </p>
-            <p class="text-xl font-bold text-gray-800">
+            <p class="text-xl font-bold text-gray-800 dark:text-white">
               {{ recipe.prepTime }} min
             </p>
           </div>
-          <div class="text-center md:border-r border-gray-100">
-            <p class="text-gray-400 text-xs uppercase font-black mb-1">
+          <div class="text-center md:border-r border-gray-100 dark:">
+            <p
+              class="text-gray-400 text-xs uppercase font-black mb-1 dark:text-white"
+            >
               Cook Time
             </p>
-            <p class="text-xl font-bold text-gray-800">
+            <p class="text-xl font-bold text-gray-800 dark:text-white">
               {{ recipe.cookTime }} min
             </p>
           </div>
           <div class="text-center md:border-r border-gray-100">
-            <p class="text-gray-400 text-xs uppercase font-black mb-1">
+            <p
+              class="text-gray-400 text-xs uppercase font-black mb-1 dark:text-white"
+            >
               Servings
             </p>
-            <p class="text-xl font-bold text-gray-800">
+            <p class="text-xl font-bold text-gray-800 dark:text-white">
               {{ recipe.servings }} ppl
             </p>
           </div>
           <div class="text-center">
-            <p class="text-gray-400 text-xs uppercase font-black mb-1">
+            <p
+              class="text-gray-400 text-xs uppercase font-black mb-1 dark:text-white"
+            >
               Total Time
             </p>
-            <p class="text-xl font-bold text-green-700">
+            <p class="text-xl font-bold text-green-700 dark:text-green-400">
               {{ recipe.prepTime + recipe.cookTime }} min
             </p>
           </div>
@@ -90,7 +101,7 @@
         <div class="grid md:grid-cols-5 gap-12">
           <div class="md:col-span-2">
             <h2
-              class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-3"
+              class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-3 dark:text-white"
             >
               <span class="w-2 h-8 bg-green-600 rounded-full"></span>
               Ingredients
@@ -102,14 +113,16 @@
                 class="flex items-start gap-3 p-3 rounded-xl hover:bg-green-50 transition-colors"
               >
                 <span class="text-green-600 font-bold">🌿</span>
-                <span class="text-gray-700 font-medium">{{ ingredient }}</span>
+                <span class="text-gray-700 font-medium dark:text-white">{{
+                  ingredient
+                }}</span>
               </li>
             </ul>
           </div>
 
           <div class="md:col-span-3">
             <h2
-              class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-3"
+              class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-3 dark:text-white"
             >
               <span class="w-2 h-8 bg-green-600 rounded-full"></span>
               Instructions
@@ -125,14 +138,16 @@
                 >
                   {{ index + 1 }}
                 </div>
-                <p class="text-gray-700 leading-relaxed pt-2">{{ step }}</p>
+                <p class="text-gray-700 leading-relaxed pt-2 dark:text-white">
+                  {{ step }}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         <div
-          class="mt-16 pt-10 border-t border-gray-100 flex flex-col sm:flex-row justify-end gap-4"
+          class="dark:border-gray-700 mt-16 pt-10 border-t border-gray-100 flex flex-col sm:flex-row justify-end gap-4"
         >
           <button
             @click="handleEdit"

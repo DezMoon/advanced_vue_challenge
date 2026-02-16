@@ -1,21 +1,23 @@
 <template>
-  <div class="min-h-screen bg-gray-50 pt-24 px-4 pb-12">
+  <div class="min-h-screen bg-gray-50 pt-24 px-4 pb-12 dark:bg-gray-900">
     <div class="max-w-3xl mx-auto">
       <div
         class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4"
       >
         <div>
-          <h1 class="text-3xl font-black text-gray-900 tracking-tight">
+          <h1
+            class="text-3xl font-black text-gray-900 tracking-tight dark:text-white"
+          >
             Weekly Planner
           </h1>
-          <p class="text-gray-500 font-medium">
+          <p class="text-gray-500 font-medium dark:text-white">
             Map out your week and generate your shopping list.
           </p>
         </div>
         <div class="flex items-center gap-3 w-full sm:w-auto">
           <button
             @click="handleGenerateList"
-            class="bg-green-700 text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-green-100 hover:bg-green-800 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
+            class="dark:shadow-none bg-green-700 text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-green-100 hover:bg-green-800 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
           >
             🛒 Generate Shopping List
           </button>
@@ -34,7 +36,7 @@
             <h2 class="font-black text-gray-800">{{ day }}</h2>
             <button
               @click="clearDay(day)"
-              class="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors"
+              class="dark:hover-red-900 dark:text-gray-900 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors"
             >
               Clear Day
             </button>
@@ -44,7 +46,7 @@
             <template v-for="type in mealTypes" :key="type">
               <div
                 v-if="mealPlan[day] && mealPlan[day][type]"
-                class="relative flex flex-col items-center justify-center p-3 rounded-2xl bg-green-50 border-2 border-green-200 min-h-25 group animate-in fade-in zoom-in duration-300"
+                class="dark:relative flex flex-col items-center justify-center p-3 rounded-2xl bg-green-50 border-2 border-green-200 min-h-25 group animate-in fade-in zoom-in duration-300"
               >
                 <button
                   @click="removeRecipeFromPlan(day, type)"
@@ -67,15 +69,15 @@
               <button
                 v-else
                 @click="openRecipeSelector(day, type)"
-                class="min-h-25 flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-dashed border-gray-100 hover:border-green-200 hover:bg-green-50/30 transition-all group"
+                class="dark:border-gray-400 min-h-25 flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-dashed border-gray-100 hover:border-green-200 hover:bg-green-50/30 transition-all group"
               >
                 <span
-                  class="text-[9px] font-black uppercase tracking-tighter text-gray-400 group-hover:text-green-600"
+                  class="dark:text-gray-800 text-[9px] font-black uppercase tracking-tighter text-gray-400 group-hover:text-green-600"
                 >
                   {{ type }}
                 </span>
                 <span
-                  class="text-xl mt-1 text-gray-300 group-hover:text-green-500 transition-all"
+                  class="dark:text-gray-900 text-xl mt-1 text-gray-300 group-hover:text-green-500 transition-all"
                 >
                   ＋
                 </span>
@@ -88,7 +90,7 @@
       <div class="mt-8 text-center">
         <button
           @click="clearWeek"
-          class="text-sm font-bold text-gray-400 hover:text-red-500 transition-colors"
+          class="dark:text-white text-sm font-bold text-gray-400 hover:text-red-500 transition-colors"
         >
           Reset Full Weekly Schedule
         </button>

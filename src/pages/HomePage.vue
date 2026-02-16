@@ -2,37 +2,40 @@
 
 
 <template>
-  <div class="min-h-screen bg-gray-50  font-sans dark:bg-900">
-    <section class="bg-green-600 text-white px-6 py-16 text-center pt-30">
-      <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
-          Welcome to Recipe Vault
-        </h1>
-        <p class="text-green-100 text-lg mb-8">
-          The best place to store, manage, and discover your next favorite meal.
-        </p>
+  <div class="min-h-screen bg-slate-200  font-sans dark:bg-gray-900 ">
+   <section class="bg-green-600 dark:bg-gray-900 text-white px-6 py-16 text-center pt-30 transition-colors duration-300 ">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-green-400">
+      Welcome to Recipe Vault
+    </h1>
+    
+    <p class="text-green-100 dark:text-gray-400 text-lg mb-8">
+      The best place to store, manage, and discover your next favorite meal.
+    </p>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <RouterLink
-            to="/AddRecipe"
-            class="bg-white text-green-700 px-8 py-3 rounded-md font-bold hover:bg-green-50 shadow-lg"
-          >
-            Add New Recipe
-          </RouterLink>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <RouterLink
+        to="/AddRecipe"
+        class="bg-white text-green-700 px-8 py-3 rounded-md font-bold hover:bg-green-50 shadow-lg 
+               dark:bg-green-600 dark:text-white dark:hover:bg-green-500 transition-all"
+      >
+        Add New Recipe
+      </RouterLink>
 
-          <RouterLink
-            to="/Recipes"
-            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md font-bold hover:bg-white hover:text-green-700 transition-all"
-          >
-            Look at All Recipes
-          </RouterLink>
-        </div>
-      </div>
-    </section>
+      <RouterLink
+        to="/Recipes"
+        class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md font-bold hover:bg-white hover:text-green-700 
+               dark:border-green-600 dark:text-green-500 dark:hover:bg-green-600 dark:hover:text-white transition-all"
+      >
+        Look at All Recipes
+      </RouterLink>
+    </div>
+  </div>
+</section>
 
     <section class="max-w-7xl mx-auto px-6 py-12">
       <h2
-        class="text-2xl font-bold text-gray-800 mb-8 border-b-2 border-green-200 pb-2 inline-block"
+        class="dark:text-green-400 text-2xl font-bold text-gray-800 mb-8 border-b-2 border-green-200 pb-2 inline-block"
       >
         Recently Added Recipes
       </h2>
@@ -41,7 +44,7 @@
         <div
           v-for="recipe in recentRecipes"
           :key="recipe.id"
-          class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow"
+          class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow dark:bg-gray-700 dark:border-gray-900"
         >
           <RouterLink :to="`/SingleRecipe/${recipe.id}`">
             <img
@@ -54,23 +57,23 @@
           <div class="p-4 grow">
             <div class="flex justify-between items-start mb-1">
               <h3
-                class="font-bold text-lg text-gray-800 uppercase leading-tight"
+                class="font-bold text-lg text-gray-800 uppercase leading-tight dark:text-white"
               >
                 {{ recipe.title }}
               </h3>
               <span
-                class="text-[10px] bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-bold uppercase"
+                class=" text-[10px] bg-green-400 text-green-800 px-2 py-0.5 rounded-full font-bold uppercase"
               >
                 {{ recipe.category }}
               </span>
             </div>
 
-            <p class="text-gray-600 text-sm line-clamp-2">
+            <p class="text-gray-600 text-sm line-clamp-2 dark:text-white">
               {{ recipe.description }}
             </p>
 
             <div
-              class="mt-4 flex items-center gap-3 text-xs text-gray-400 font-semibold"
+              class="mt-4 flex items-center gap-3 text-xs text-gray-400 font-semibold dark:text-white"
             >
               <span>⏱️ {{ recipe.prepTime + recipe.cookTime }} mins</span>
               <span>🔥 {{ recipe.difficulty }}</span>

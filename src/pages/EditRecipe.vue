@@ -1,10 +1,10 @@
 <template>
   <div
     v-if="editableRecipe"
-    class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 pt-24"
+    class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 pt-24 dark:bg-gray-900"
   >
     <div
-      class="max-w-4xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden border border-gray-100"
+      class="dark:border-gray-800 dark:bg-gray-900 max-w-4xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden border border-gray-100"
     >
       <div class="relative h-80 bg-gray-200">
         <img
@@ -18,7 +18,7 @@
           @click="goBack"
           class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-5 py-2 rounded-full text-green-700 font-bold shadow-lg hover:bg-white transition-all flex items-center gap-2"
         >
-          <span>←</span> Cancel & Exit
+          <span>←</span> Back
         </button>
       </div>
 
@@ -26,7 +26,7 @@
         <div class="grid gap-6 mb-8">
           <div>
             <label
-              class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
+              class="dark:text-white block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
             >
               Recipe Title
             </label>
@@ -34,13 +34,13 @@
               v-model="editableRecipe.title"
               type="text"
               placeholder="e.g. Grandma's Famous Lasagna"
-              class="w-full text-3xl md:text-4xl font-black p-4 border-2 border-gray-50 rounded-2xl focus:border-green-500 focus:bg-white bg-gray-50 outline-none transition-all"
+              class="dark:text-grey-800 dark:bg-gray-200 dark:border-none w-full text-3xl md:text-4xl font-black p-4 border-2 border-gray-50 rounded-2xl focus:border-green-500 focus:bg-white bg-gray-50 outline-none transition-all"
             />
           </div>
 
           <div>
             <label
-              class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
+              class="dark:text-white block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
             >
               Image URL
             </label>
@@ -49,7 +49,7 @@
                 v-model="editableRecipe.image"
                 type="text"
                 placeholder="Paste image link here"
-                class="flex-1 p-4 border-2 border-gray-50 rounded-2xl font-bold bg-gray-50 focus:border-green-500 focus:bg-white outline-none transition-all"
+                class="dark:bg-gray-200 dark:border-none flex-1 p-4 border-2 border-gray-50 rounded-2xl font-bold bg-gray-50 focus:border-green-500 focus:bg-white outline-none transition-all"
               />
             </div>
           </div>
@@ -57,13 +57,13 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
             <div>
               <label
-                class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
+                class="dark:text-white block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
               >
                 Category
               </label>
               <select
                 v-model="editableRecipe.category"
-                class="w-full p-4 border-2 border-gray-50 rounded-2xl bg-gray-50 font-bold outline-none focus:border-green-500"
+                class="dark:bg-gray-200 dark:border-none w-full p-4 border-2 border-gray-50 rounded-2xl bg-gray-50 font-bold outline-none focus:border-green-500"
               >
                 <option
                   v-for="cat in [
@@ -81,13 +81,13 @@
             </div>
             <div>
               <label
-                class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
+                class="dark:text-white block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
               >
                 Difficulty
               </label>
               <select
                 v-model="editableRecipe.difficulty"
-                class="w-full p-4 border-2 border-gray-50 rounded-2xl bg-gray-50 font-bold outline-none focus:border-green-500"
+                class="dark:bg-gray-200 dark:border-none w-full p-4 border-2 border-gray-50 rounded-2xl bg-gray-50 font-bold outline-none focus:border-green-500"
               >
                 <option v-for="diff in ['Easy', 'Medium', 'Hard']" :key="diff">
                   {{ diff }}
@@ -99,14 +99,14 @@
 
         <div class="mb-10">
           <label
-            class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
+            class="dark:text-white block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest"
           >
             Description
           </label>
           <textarea
             v-model="editableRecipe.description"
             rows="3"
-            class="w-full p-4 border-2 border-gray-50 rounded-2xl italic bg-gray-50 focus:border-green-500 outline-none transition-all"
+            class="dark:bg-gray-200 dark:border-none w-full p-4 border-2 border-gray-50 rounded-2xl italic bg-gray-50 focus:border-green-500 outline-none transition-all"
           ></textarea>
         </div>
 
@@ -114,7 +114,9 @@
           class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-gray-100 mb-12"
         >
           <div class="text-center md:border-r border-gray-100">
-            <p class="text-gray-400 text-xs uppercase font-black mb-2">
+            <p
+              class="dark:text-white text-gray-400 text-xs uppercase font-black mb-2"
+            >
               Prep Time
             </p>
             <div class="flex items-center justify-center gap-1">
@@ -123,11 +125,30 @@
                 type="number"
                 class="w-16 text-center text-xl font-bold bg-green-50 rounded-lg p-1 outline-none"
               />
-              <span class="text-gray-400 font-bold">m</span>
+              <span class="text-gray-400 font-bold dark:text-white">m</span>
+            </div>
+          </div>
+          <div class="text-center md:border-r border-gray-100">
+            <p
+              class="dark:text-white text-gray-400 text-xs uppercase font-black mb-2"
+            >
+              Cook Time
+            </p>
+            <div class="flex items-center justify-center gap-1">
+              <input
+                v-model.number="editableRecipe.cookTime"
+                type="number"
+                class="w-16 text-center text-xl font-bold bg-green-50 rounded-lg p-1 outline-none"
+              />
+              <span class="text-gray-400 font-bold dark:text-white">m</span>
             </div>
           </div>
           <div class="text-center">
-            <p class="text-gray-400 text-xs uppercase font-black mb-2">Total</p>
+            <p
+              class="text-gray-400 text-xs uppercase font-black mb-2 dark:text-white"
+            >
+              Total
+            </p>
             <p class="text-xl font-bold text-green-700">
               {{
                 (editableRecipe.prepTime || 0) + (editableRecipe.cookTime || 0)
@@ -140,7 +161,7 @@
         <div class="grid md:grid-cols-5 gap-12">
           <div class="md:col-span-2">
             <h2
-              class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-3"
+              class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-3 dark:text-white"
             >
               Ingredients
             </h2>
@@ -172,7 +193,9 @@
           </div>
 
           <div class="md:col-span-3">
-            <h2 class="text-2xl font-black text-gray-800 mb-6">Instructions</h2>
+            <h2 class="text-2xl font-black text-gray-800 mb-6 dark:text-white">
+              Instructions
+            </h2>
             <div class="space-y-6">
               <div
                 v-for="(_, index) in editableRecipe.instructions"

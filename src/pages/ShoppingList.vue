@@ -1,12 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gray-50 pt-20 md:pt-32 px-4 pb-20">
+  <div
+    class="min-h-screen bg-gray-50 pt-20 md:pt-32 px-4 pb-20 dark:bg-gray-900"
+  >
     <div class="max-w-2xl mx-auto">
       <header
         class="mb-8 flex flex-col xs:flex-row justify-between items-start xs:items-end gap-4"
       >
         <div class="w-full xs:w-auto">
           <h1
-            class="font-black text-gray-900 mb-3 text-2xl md:text-3xl tracking-tight"
+            class="dark:text-white font-black text-gray-900 mb-3 text-2xl md:text-3xl tracking-tight"
           >
             My Shopping List 🚛
           </h1>
@@ -35,7 +37,7 @@
           @keyup.enter="handleAdd"
           type="text"
           placeholder="Add something extra..."
-          class="flex-1 px-5 py-4 rounded-2xl border-none shadow-sm focus:ring-2 focus:ring-green-500 outline-none text-base"
+          class="dark:text-gray-950 dark:bg-gray-300 flex-1 px-5 py-4 rounded-2xl border-none shadow-sm focus:ring-2 focus:ring-green-500 outline-none text-base"
         />
         <button
           @click="handleAdd"
