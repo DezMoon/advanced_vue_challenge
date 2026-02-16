@@ -38,21 +38,21 @@
       <RouterLink to="/" class="hover:text-green-700 dark:hover:text-green-400"
         >Home</RouterLink
       >
-      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+      <span class="hidden md:inline text-gray-300 dark:text-gray-600">|</span>
 
       <RouterLink
         to="/Recipes"
         class="hover:text-green-700 dark:hover:text-green-400"
         >Recipes</RouterLink
       >
-      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+      <span class="hidden md:inline text-gray-300 dark:text-gray-600">|</span>
 
       <RouterLink
         to="/MealPlans"
         class="hover:text-green-700 dark:hover:text-green-400"
         >MealPlans</RouterLink
       >
-      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+      <span class="hidden md:inline text-gray-300 dark:text-gray-600">|</span>
 
       <RouterLink
         to="/ShoppingList"
@@ -60,11 +60,11 @@
         >ShoppingList</RouterLink
       >
 
-      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+      <span class="hidden md:inline text-gray-300 dark:text-gray-600">|</span>
       <button
         @click="toggleTheme"
-        class="cursor-pointer text-lg hover:text-green-700 dark:hover:text-green-400 transition-transform active:scale-90 px-2"
-        aria-label="Toggle Dark Mode"
+        class="cursor-pointer text-lg hover:text-green-700 dark:hover:text-green-400 transition-all duration-200 active:scale-90 px-2 select-none"
+        title="Toggle Light/Dark Mode"
       >
         {{ isDark ? "☀️" : "⏾" }}
       </button>
@@ -75,8 +75,11 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import { ref } from "vue";
+
 import { useThemeContext } from "../composables/useThemeContext";
 
 const isMenuOpen = ref(false);
+
+// Access the reactive state and the toggle function from the composable
 const { isDark, toggleTheme } = useThemeContext();
 </script>
