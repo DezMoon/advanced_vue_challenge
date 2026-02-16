@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed bg-white shadow-md px-6 py-4 flex items-center justify-between flex-wrap w-full z-10"
+    class="fixed px-6 py-4 flex items-center justify-between flex-wrap w-full z-10 transition-colors duration-300 shadow-md bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-100"
   >
     <div class="flex items-center gap-2">
       <RouterLink to="/" class="hover:text-green-700">
@@ -33,21 +33,41 @@
 
     <ul
       :class="isMenuOpen ? 'flex' : 'hidden'"
-      class="md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-5 text-sm text-gray-700 font-medium items-center"
+      class="md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-5 text-sm font-medium items-center"
     >
-      <RouterLink to="/" class="hover:text-green-700">Home</RouterLink>
-      <span class="hidden md:inline text-gray-300">|</span>
-      <RouterLink to="/Recipes" class="hover:text-green-700"
+      <RouterLink to="/" class="hover:text-green-700 dark:hover:text-green-400"
+        >Home</RouterLink
+      >
+      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+
+      <RouterLink
+        to="/Recipes"
+        class="hover:text-green-700 dark:hover:text-green-400"
         >Recipes</RouterLink
       >
-      <span class="hidden md:inline text-gray-300">|</span>
-      <RouterLink to="/MealPlans" class="hover:text-green-700"
+      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+
+      <RouterLink
+        to="/MealPlans"
+        class="hover:text-green-700 dark:hover:text-green-400"
         >MealPlans</RouterLink
       >
-      <span class="hidden md:inline text-gray-300">|</span>
-      <RouterLink to="/ShoppingList" class="hover:text-green-700"
+      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+
+      <RouterLink
+        to="/ShoppingList"
+        class="hover:text-green-700 dark:hover:text-green-400"
         >ShoppingList</RouterLink
       >
+
+      <span class="hidden md:inline text-gray-300 dark:text-gray-700">|</span>
+      <button
+        @click="toggleTheme"
+        class="cursor-pointer text-lg hover:text-green-700 dark:hover:text-green-400 transition-transform active:scale-90 px-2"
+        aria-label="Toggle Dark Mode"
+      >
+        {{ isDark ? "☀️" : "⏾" }}
+      </button>
     </ul>
   </nav>
 </template>
@@ -55,6 +75,8 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import { ref } from "vue";
+import { useThemeContext } from "../composables/useThemeContext";
 
 const isMenuOpen = ref(false);
+const { isDark, toggleTheme } = useThemeContext();
 </script>

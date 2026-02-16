@@ -2,7 +2,7 @@
 
 
 <template>
-  <div class="min-h-screen bg-gray-50 font-sans">
+  <div class="min-h-screen bg-gray-50  font-sans dark:bg-900">
     <section class="bg-green-600 text-white px-6 py-16 text-center pt-30">
       <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4">

@@ -44,7 +44,7 @@
             <template v-for="type in mealTypes" :key="type">
               <div
                 v-if="mealPlan[day] && mealPlan[day][type]"
-                class="relative flex flex-col items-center justify-center p-3 rounded-2xl bg-green-50 border-2 border-green-200 min-h-[100px] group animate-in fade-in zoom-in duration-300"
+                class="relative flex flex-col items-center justify-center p-3 rounded-2xl bg-green-50 border-2 border-green-200 min-h-25 group animate-in fade-in zoom-in duration-300"
               >
                 <button
                   @click="removeRecipeFromPlan(day, type)"
