@@ -10,14 +10,14 @@
         <img
           :src="
             recipe.image ||
-            'https://images.unsplash.com/photo-1495195129352-aed325a55b65?q=80&w=1200'
+            'https://www.simplyrecipes.com/thmb/OqIa97v74_ejCGqPxeyCs2Lv-1Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SimplyRecipesPlaceholder-d1f4bdc2330a4d5ea617df96c74321cc.png'
           "
           :alt="recipe.title"
           class="w-full h-full object-cover"
         />
         <button
           @click="goBack"
-          class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-5 py-2 rounded-full text-green-700 font-bold shadow-lg hover:bg-white transition-all flex items-center gap-2"
+          class="print:hidden absolute top-6 left-6 bg-white/90 backdrop-blur-md px-5 py-2 rounded-full text-green-700 font-bold shadow-lg hover:bg-white transition-all flex items-center gap-2"
         >
           <span>←</span> Back to Vault
         </button>
@@ -110,7 +110,7 @@
               <li
                 v-for="(ingredient, index) in recipe.ingredients"
                 :key="index"
-                class="flex items-start gap-3 p-3 rounded-xl hover:bg-green-50 transition-colors"
+                class="flex items-start gap-3 p-3 rounded-xl hover:bg-green-50 transition-colors dark:hover:bg-green-400"
               >
                 <span class="text-green-600 font-bold">🌿</span>
                 <span class="text-gray-700 font-medium dark:text-white">{{
@@ -151,15 +151,22 @@
         >
           <button
             @click="handleEdit"
-            class="px-8 py-3 bg-gray-100 text-gray-700 rounded-2xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
+            class="print:hidden px-8 py-3 bg-gray-100 text-gray-700 rounded-2xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
           >
             Edit Recipe
           </button>
           <button
             @click="openDeleteModal"
-            class="px-8 py-3 bg-red-50 text-red-600 rounded-2xl font-bold hover:bg-red-200 transition-all flex items-center justify-center gap-2"
+            class="print:hidden px-8 py-3 bg-red-50 text-red-600 rounded-2xl font-bold hover:bg-red-200 transition-all flex items-center justify-center gap-2"
           >
             Delete Recipe
+          </button>
+
+          <button
+            @click="printRecipe"
+            class="print:hidden px-8 py-3 bg-green-700 text-white rounded-2xl font-bold hover:bg-green-800 flex items-center justify-center gap-2 shadow-lg"
+          >
+            <span>🖨️</span> Print Recipe
           </button>
         </div>
       </div>
@@ -274,5 +281,9 @@ const closeDeleteModal = (): void => {
 const confirmDelete = (): void => {
   deleteRecipe(recipeId);
   router.push("/Recipes");
+};
+
+const printRecipe = (): void => {
+  window.print();
 };
 </script>

@@ -13,7 +13,7 @@
             My Shopping List 🚛
           </h1>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 print:hidden">
             <div
               class="h-2 w-24 md:w-48 bg-gray-200 rounded-full overflow-hidden shadow-inner"
             >
@@ -29,6 +29,12 @@
             </span>
           </div>
         </div>
+        <button
+          @click="printRecipe"
+          class="print:hidden px-8 py-3 bg-green-700 text-white rounded-2xl font-bold hover:bg-green-800 flex items-center justify-center gap-2 shadow-lg"
+        >
+          <span>🖨️</span> Print Recipe
+        </button>
       </header>
 
       <div class="mb-8 flex flex-col sm:flex-row gap-3 print:hidden">
@@ -107,4 +113,8 @@ const handleAdd = () => {
 
 // Load items when the user arrives at the page
 onMounted(() => loadItems());
+
+const printRecipe = (): void => {
+  window.print();
+};
 </script>

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed px-6 py-4 flex items-center justify-between flex-wrap w-full z-10 transition-colors duration-300 shadow-md bg-white text-gray-700 dark:bg-gray-700 dark:text-gray-100"
+    class="print:hidden fixed px-6 py-4 flex items-center justify-between flex-wrap w-full z-10 transition-colors duration-300 shadow-md bg-white text-gray-700 dark:bg-gray-700 dark:text-gray-100"
   >
     <div class="flex items-center gap-2">
       <RouterLink to="/" class="hover:text-green-700">
@@ -35,9 +35,7 @@
       :class="isMenuOpen ? 'flex' : 'hidden'"
       class="md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-5 text-sm font-medium items-center"
     >
-      <RouterLink
-        to="/"
-        class="hover:text-green-700 dark:hover:text-green-400"
+      <RouterLink to="/" class="hover:text-green-700 dark:hover:text-green-400"
         >Home</RouterLink
       >
       <span class="hidden md:inline text-gray-300 dark:text-gray-600">|</span>
